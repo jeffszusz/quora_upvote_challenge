@@ -1,0 +1,24 @@
+body {
+  padding: 20px;
+}
+
+h1, h2, h3, h4 {
+  color: #ED5A40;
+}
+
+.story p {
+  line-height: 0.5;
+  font-style: italic;
+}
+
+a, a:link, a:active, a:visited, a:hover {
+  color: royalblue;
+}
+
+p {
+  width: 600px;
+}
+
+#mocha {
+  color: #F62D73;
+}
