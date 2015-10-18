@@ -1,7 +1,9 @@
+A solution in JavaScript, unit tested with Mocha and Chai, of the first challenge here: https://www.quora.com/challenges
+
 # Quora's Upvotes Challenge (JavaScript)
 
 I used plain JavaScript with lodash, and did this exercise with TDD using
-Mocha and Chai. Output is logged in the JavaScript console.
+Mocha and Chai. Demo output is logged in the JavaScript console.
 
 `app.js` contains application code and `test.js` contains unit tests.
 
