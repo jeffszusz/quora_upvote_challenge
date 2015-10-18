@@ -4,11 +4,7 @@
 
   function UpvoteTrendTracker(){};
 
-  function extractData(data){
-    var N = data[0][0],
-        K = data[0][1],
-        upvotes = data[1];
-
+  function saveData(N, K, upvotes){
     if (this.validateN(N)) { this.totalDays = N; }
     else {
       throw new Error('Given value for Total Days (N) is not valid!');
@@ -75,13 +71,14 @@
     return scores;
   }
 
-  function analyzeTrends(data){
-    this.extractData(data);
+  function analyzeTrends(N, K, upvotes){
+
+    this.saveData(N, K, upvotes);
     return this.scoreWindows(this.upvotes);
   }
 
   _.extend(UpvoteTrendTracker.prototype, {
-    extractData: extractData,
+    saveData: saveData,
     validateN: validateN,
     validateK: validateK,
     isNonIncreasing: isNonIncreasing,
@@ -94,3 +91,19 @@
   window.UpvoteTrendTracker = UpvoteTrendTracker;
 
 })();
+
+window.addEventListener('load', function(){
+
+  // Demonstration
+
+  var upvoteTrendTracker = new UpvoteTrendTracker();
+
+  var N = 5,
+      K = 3,
+      upvotes = [1, 2, 3, 1, 1];
+
+  console.log(N + ' days worth of data');
+  console.log('windows of ' + K + ' days');
+  console.log('collected upvote data:', upvotes);
+  console.log('resulting metrics: ', upvoteTrendTracker.analyzeTrends(N, K, upvotes));
+});

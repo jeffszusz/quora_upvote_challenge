@@ -6,19 +6,13 @@
   describe('upvoteTrendTracker', function() {
 
     var uTracker,
-        testData,
-        N,
-        K,
-        upvotes;
+        N = 5,
+        K = 3,
+        upvotes = [1, 2, 3, 1, 1];
 
     before(function(){
 
-      testData = [
-        [(N = 5), (K = 3)],
-        (upvotes = [1, 2, 3, 1, 1])
-      ];
-
-      uTracker = new UpvoteTrendTracker(testData);
+      uTracker = new UpvoteTrendTracker();
 
     });
 
@@ -29,7 +23,7 @@
       })
 
       it('should become populated with data when used', function(){
-        uTracker.analyzeTrends(testData);
+        uTracker.analyzeTrends(N, K, upvotes);
         uTracker.totalDays.should.equal(5);
         uTracker.windowSize.should.equal(3);
         uTracker.upvotes.should.eql(upvotes);
@@ -125,21 +119,19 @@
     describe('@analyzeTrends', function(){
 
       it('should extract the given data', function(){
-        sinon.spy(uTracker, 'extractData');
-        uTracker.analyzeTrends(testData);
-        uTracker.extractData.should.have.been.called;
+        uTracker.analyzeTrends(N, K, upvotes);
         uTracker.totalDays.should.be.defined;
         uTracker.windowSize.should.be.defined;
         uTracker.upvotes.should.be.defined;
       });
 
       it('should return an array of N - K + 1 integers', function(){
-        uTracker.analyzeTrends(testData).should.be.an('array');
-        uTracker.analyzeTrends(testData).length.should.equal(N-K+1);
+        uTracker.analyzeTrends(N, K, upvotes).should.be.an('array');
+        uTracker.analyzeTrends(N, K, upvotes).length.should.equal(N-K+1);
       });
 
       it('should return expected output when given sample input', function(){
-        uTracker.analyzeTrends(testData).should.eql([3,0,-2]);
+        uTracker.analyzeTrends(N, K, upvotes).should.eql([3,0,-2]);
       });
 
 

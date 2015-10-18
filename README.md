@@ -1,8 +1,7 @@
 # Quora's Upvotes Challenge (JavaScript)
 
-I did this exercise with TDD using Mocha, Chai and Sinon.
-
-I used vanilla JavaScript with lodash.
+I used plain JavaScript with lodash, and did this exercise with TDD using
+Mocha and Chai. Output is logged in the JavaScript console.
 
 `app.js` contains application code and `test.js` contains unit tests.
 
