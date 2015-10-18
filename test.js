@@ -73,6 +73,30 @@
       });
     });
 
+    describe('@isNonIncreasing', function(){
+
+      it('should return true given a sequence where each number is at least as large as the next', function(){
+        uTracker.isNonIncreasing([5,4,3,3,1]).should.be.true
+      });
+
+      it('should return false given a sequence where any number is smaller than the next', function(){
+        uTracker.isNonIncreasing([5,4,3,4,1]).should.be.false
+      });
+
+    });
+
+    describe('@isNonDecreasing', function(){
+
+      it('should return true given a sequence where each number is at least as large as the previous', function(){
+        uTracker.isNonDecreasing([1,2,2,3,4]).should.be.true
+      });
+
+      it('should return false given a sequence where any number is smaller than the previous', function(){
+        uTracker.isNonDecreasing([1,2,3,2,4]).should.be.false
+      });
+
+    });
+
     describe('@analyzeTrends', function(){
 
       it('should extract the given data', function(){

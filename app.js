@@ -30,9 +30,24 @@
     return 1 < k && k < n;
   }
 
-  function isNonIncreasingSubrange(){}
+  function sequenceComparatorFactory(func){
+    return function(sequence){
+      for (var index = 0; index < sequence.length; index++){
+        if (func(index, sequence)){
+          return false;
+        };
+      }
+      return true;
+    }
+  }
 
-  function isNonDecreasingSubrange(){}
+  var isNonIncreasing = sequenceComparatorFactory(function(index, sequence){
+    return sequence[index] < sequence[index + 1];
+  });
+
+  var isNonDecreasing = sequenceComparatorFactory(function(index, sequence){
+    return sequence[index] < sequence[index - 1];
+  })
 
   function analyzeTrends(data){
     this.extractData(data);
@@ -43,8 +58,8 @@
     extractData: extractData,
     validateN: validateN,
     validateK: validateK,
-    isNonIncreasingSubrange: isNonIncreasingSubrange,
-    isNonDecreasingSubrange: isNonDecreasingSubrange,
+    isNonIncreasing: isNonIncreasing,
+    isNonDecreasing: isNonDecreasing,
     analyzeTrends: analyzeTrends
   });
 
