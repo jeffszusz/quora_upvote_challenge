@@ -1,6 +1,6 @@
-A solution in JavaScript, unit tested with Mocha and Chai, of the first challenge here: https://www.quora.com/challenges
+A solution in JavaScript, unit tested with Mocha and Chai, for the first challenge here: https://www.quora.com/challenges
 
-# Quora's Upvotes Challenge (JavaScript)
+# Quora's Upvotes Challenge
 
 I used plain JavaScript with lodash, and did this exercise with TDD using
 Mocha and Chai. Demo output is logged in the JavaScript console.
@@ -19,8 +19,8 @@ A window of days is defined as contiguous range of days. Thus, there are exactly
 
 
 ### Constraints
-1≤N≤100,000 days
-1≤K≤N days
+1 ≤ N ≤ 100,000 days
+1 ≤ K ≤ N days
 
 ### Input Format
 Line 1: Two integers, N and K
@@ -31,17 +31,15 @@ Line 2: N positive integers of upvote counts, each integer less than or equal to
 Line 1..: N−K+1 integers, one integer for each window's result on each line
 
 ### Sample Input
-1
-2
 5 3
+
 1 2 3 1 1
 
 ### Sample Output
-1
-2
 3
-3
+
 0
+
 -2
 
 ### Explanation
