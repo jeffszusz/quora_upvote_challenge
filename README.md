@@ -7,6 +7,7 @@ Mocha and Chai. Demo output is logged in the JavaScript console.
 
 `app.js` contains application code and `test.js` contains unit tests.
 
+Simply open index.html in your browser.
 
 ## Instructions
 At Quora, we have aggregate graphs that track the number of upvotes we get each day.
