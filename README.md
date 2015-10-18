@@ -20,6 +20,7 @@ A window of days is defined as contiguous range of days. Thus, there are exactly
 
 ### Constraints
 1 ≤ N ≤ 100,000 days
+
 1 ≤ K ≤ N days
 
 ### Input Format
