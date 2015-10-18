@@ -94,7 +94,3 @@
   window.UpvoteTrendTracker = UpvoteTrendTracker;
 
 })();
-
-// main program
-window.addEventListener('load', function(){
-});
