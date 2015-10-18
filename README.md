@@ -8,6 +8,9 @@ I used vanilla JavaScript with lodash.
 
 
 ## Instructions
+At Quora, we have aggregate graphs that track the number of upvotes we get each day.
+
+As we looked at patterns across windows of certain sizes, we thought about ways to track trends such as non-decreasing and non-increasing subranges as efficiently as possible.
 
 For this problem, you are given N days of upvote count data, and a fixed window size K. For each window of K days, from left to right, find the number of non-decreasing subranges within the window minus the number of non-increasing subranges within the window.
 

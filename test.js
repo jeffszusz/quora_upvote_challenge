@@ -32,7 +32,7 @@
         uTracker.analyzeTrends(testData);
         uTracker.totalDays.should.equal(5);
         uTracker.windowSize.should.equal(3);
-        uTracker.upvotes.should.eql(testData[1]);
+        uTracker.upvotes.should.eql(upvotes);
       });
 
     });
@@ -42,11 +42,11 @@
       describe('@validateN', function(){
 
         it('should fail validation if N is not greater than 1', function(){
-          uTracker.validateN(0).should.be.false
+          uTracker.validateN(0).should.be.false;
         });
 
         it('should fail validation if N is not less than 100,000', function(){
-          uTracker.validateN(100000).should.be.false
+          uTracker.validateN(100000).should.be.false;
         });
 
         it('should pass if N is greater than 1 & less than 100,000', function(){
@@ -59,11 +59,11 @@
       describe('@validateK', function(){
 
         it('should fail validation if K is not greater than 1', function(){
-          uTracker.validateK(0).should.be.false
+          uTracker.validateK(0).should.be.false;
         });
 
         it('should fail validation if K is not less than N', function(){
-          uTracker.validateK(100000).should.be.false
+          uTracker.validateK(100000).should.be.false;
         });
 
         it('should pass if K is greater than 1 & less than N', function(){
@@ -73,36 +73,64 @@
       });
     });
 
-    describe('@isNonIncreasing', function(){
+    describe('scoring', function(){
 
-      it('should return true given a sequence where each number is at least as large as the next', function(){
-        uTracker.isNonIncreasing([5,4,3,3,1]).should.be.true
+      describe('@isNonIncreasing', function(){
+
+        it('should return true given a sequence where each number is at least \
+          as large as the next', function(){
+            uTracker.isNonIncreasing([5,4,3,3,1]).should.be.true;
+        });
+
+        it('should return false given a sequence where any number is smaller \
+          than the next', function(){
+            uTracker.isNonIncreasing([5,4,3,4,1]).should.be.false;
+        });
+
       });
 
-      it('should return false given a sequence where any number is smaller than the next', function(){
-        uTracker.isNonIncreasing([5,4,3,4,1]).should.be.false
+      describe('@isNonDecreasing', function(){
+
+        it('should return true given a sequence where each number is at least \
+          as large as the previous', function(){
+            uTracker.isNonDecreasing([1,2,2,3,4]).should.be.true;
+        });
+
+        it('should return false given a sequence where any number is smaller \
+          than the previous', function(){
+            uTracker.isNonDecreasing([1,2,3,2,4]).should.be.false;
+        });
+
       });
 
-    });
-
-    describe('@isNonDecreasing', function(){
-
-      it('should return true given a sequence where each number is at least as large as the previous', function(){
-        uTracker.isNonDecreasing([1,2,2,3,4]).should.be.true
+      describe('@scoreSubranges', function(){
+        it('should find the number of non-decreasing subranges minus the number\
+          of non-increasing subranges', function(){
+            uTracker.scoreSubranges([1,2,3]).should.equal(3);
+            uTracker.scoreSubranges([2,3,1]).should.equal(0);
+            uTracker.scoreSubranges([3,1,1]).should.equal(-2);
+        });
       });
 
-      it('should return false given a sequence where any number is smaller than the previous', function(){
-        uTracker.isNonDecreasing([1,2,3,2,4]).should.be.false
+      describe('@scoreWindows', function(){
+        it('should score each window found in a dataset', function(){
+          uTracker.totalDays = 5;
+          uTracker.windowSize = 3;
+          uTracker.scoreWindows(upvotes).should.eql([3,0,-2]);
+        });
       });
 
-    });
+    })
 
     describe('@analyzeTrends', function(){
 
       it('should extract the given data', function(){
         sinon.spy(uTracker, 'extractData');
         uTracker.analyzeTrends(testData);
-        uTracker.extractData.should.not.have.been.called;
+        uTracker.extractData.should.have.been.called;
+        uTracker.totalDays.should.be.defined;
+        uTracker.windowSize.should.be.defined;
+        uTracker.upvotes.should.be.defined;
       });
 
       it('should return an array of N - K + 1 integers', function(){
@@ -110,7 +138,7 @@
         uTracker.analyzeTrends(testData).length.should.equal(N-K+1);
       });
 
-      it.skip('should return expected output when given sample input', function(){
+      it('should return expected output when given sample input', function(){
         uTracker.analyzeTrends(testData).should.eql([3,0,-2]);
       });
 
